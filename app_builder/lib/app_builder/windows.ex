@@ -156,6 +156,9 @@ defmodule AppBuilder.Windows do
   ' The first one will only succeed when the app is already running. The second one when it is not.
   ' It's ok for either to fail because we run them asynchronously.
 
+  Set env = shell.Environment("Process")
+  env("PATH") = ".\rel\erts-<%= :erlang.system_info(:version) %>\bin;" & env("PATH")
+
   ' > bin/release rpc "mod.windows_connected(url)"
   '
   ' We send the URL through IO, as opposed through the rpc expression, to avoid RCE.
