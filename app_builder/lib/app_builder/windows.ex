@@ -167,7 +167,6 @@ defmodule AppBuilder.Windows do
 
   ' > bin/release start
   cmd = """" & path & """ start"
-  Set env = shell.Environment("Process")
   env("<%= String.upcase(app_name) <> "_URL" %>") = url
   code = shell.Run("cmd /c " & cmd & " >> .\Logs\<%= app_name %>.log 2>&1", 0)
   """
