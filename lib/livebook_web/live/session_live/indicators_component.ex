@@ -9,7 +9,7 @@ defmodule LivebookWeb.SessionLive.IndicatorsComponent do
   def render(assigns) do
     ~H"""
     <div class="flex items-center justify-between sticky px-2 top-0 left-0 right-0 z-[500] bg-white border-b border-gray-200">
-      <div class="sm:hidden text-2xl text-gray-400 hover:text-gray-600 focus:text-gray-600 rounded-xl h-10 w-10 flex items-center justify-center">
+      <div class="flex items-center justify-center w-10 h-10 text-2xl text-gray-400 sm:hidden hover:text-gray-600 focus:text-gray-600 rounded-xl dark:text-gray-300 dark:hover:text-gray-200 dark:focus:text-gray-200">
         <button
           aria-label="hide sidebar"
           data-el-toggle-sidebar
@@ -35,7 +35,7 @@ defmodule LivebookWeb.SessionLive.IndicatorsComponent do
       </div>
       <div class="sm:fixed bottom-[0.4rem] right-[1.5rem]">
         <div
-          class="flex flex-row-reverse sm:flex-col items-center justify-end p-2 sm:p-0 space-x-2 space-x-reverse sm:space-x-0 sm:space-y-2"
+          class="flex flex-row-reverse items-center justify-end p-2 sm:flex-col sm:p-0 space-x-2 space-x-reverse sm:space-x-0 sm:space-y-2"
           data-el-notebook-indicators
         >
           <.code_zen_indicator />
@@ -63,30 +63,38 @@ defmodule LivebookWeb.SessionLive.IndicatorsComponent do
     ~H"""
     <span class="tooltip left" data-tooltip="Enter code zen (z)" data-el-code-zen-enable>
       <button
-        class="icon-button icon-outlined-button border-gray-200 hover:bg-gray-100 focus:bg-gray-100"
+        class="border-gray-200 icon-button icon-outlined-button hover:bg-gray-100 focus:bg-gray-100 dark:hover:bg-gray-800 dark:focus:bg-gray-800"
         aria-label="enter code zen"
         data-el-code-zen-enable-button
       >
-        <.remix_icon icon="code-line" class="text-xl text-gray-400" />
+        <.remix_icon icon="code-line" class="text-xl text-gray-400 dark:text-gray-200" />
       </button>
     </span>
     <div data-el-focus-mode-options>
       <.menu id="focus-mode-menu" position="top-right">
         <:toggle>
           <button
-            class="icon-button icon-outlined-button border-green-bright-300 hover:bg-green-bright-50 focus:bg-green-bright-50"
+            class="icon-button icon-outlined-button border-green-bright-300 hover:bg-green-bright-50 focus:bg-green-bright-50 dark:hover:bg-green-bright-900 dark:focus:bg-green-bright-900"
             aria-label="code zen options"
           >
             <.remix_icon icon="code-line" class="text-xl text-green-bright-400" />
           </button>
         </:toggle>
         <:content>
-          <button class="menu-item text-gray-500" role="menuitem" data-el-code-zen-outputs-toggle>
+          <button
+            class="text-gray-500 menu-item dark:text-gray-300"
+            role="menuitem"
+            data-el-code-zen-outputs-toggle
+          >
             <.remix_icon icon="layout-bottom-2-line" />
             <span class="font-medium" data-label-show>Show outputs</span>
             <span class="font-medium" data-label-hide>Hide outputs</span>
           </button>
-          <button class="menu-item text-gray-500" role="menuitem" data-el-code-zen-disable-button>
+          <button
+            class="text-gray-500 menu-item dark:text-gray-300"
+            role="menuitem"
+            data-el-code-zen-disable-button
+          >
             <.remix_icon icon="close-line" />
             <span class="font-medium">Exit code zen</span>
           </button>
@@ -100,9 +108,9 @@ defmodule LivebookWeb.SessionLive.IndicatorsComponent do
     ~H"""
     <span class="tooltip left" data-tooltip="Choose a file to save the notebook">
       <%= live_patch to: Routes.session_path(@socket, :file_settings, @session_id),
-            class: "icon-button icon-outlined-button border-gray-200 hover:bg-gray-100 focus:bg-gray-100",
+            class: "icon-button icon-outlined-button border-gray-200 hover:bg-gray-100 focus:bg-gray-100 dark:hover:bg-gray-800 dark:focus:bg-gray-800",
             aria_label: "choose a file to save the notebook" do %>
-        <.remix_icon icon="save-line" class="text-xl text-gray-400" />
+        <.remix_icon icon="save-line" class="text-xl text-gray-400 dark:text-gray-200" />
       <% end %>
     </span>
     """
@@ -112,7 +120,7 @@ defmodule LivebookWeb.SessionLive.IndicatorsComponent do
     ~H"""
     <span class="tooltip left" data-tooltip="Notebook saved">
       <%= live_patch to: Routes.session_path(@socket, :file_settings, @session_id),
-            class: "icon-button icon-outlined-button border-green-bright-300 hover:bg-green-bright-50 focus:bg-green-bright-50",
+            class: "icon-button icon-outlined-button border-green-bright-300 hover:bg-green-bright-50 focus:bg-green-bright-50 dark:hover:bg-green-bright-900 dark:focus:bg-green-bright-900",
             aria_label: "notebook saved, click to open file settings" do %>
         <.remix_icon icon="save-line" class="text-xl text-green-bright-400" />
       <% end %>
@@ -151,9 +159,9 @@ defmodule LivebookWeb.SessionLive.IndicatorsComponent do
     <% else %>
       <span class="tooltip left" data-tooltip="Choose a runtime to run the notebook in">
         <%= live_patch to: Routes.session_path(@socket, :runtime_settings, @session_id),
-              class: "icon-button icon-outlined-button border-gray-200 hover:bg-gray-100 focus:bg-gray-100",
+              class: "icon-button icon-outlined-button border-gray-200 hover:bg-gray-100 focus:bg-gray-100 dark:hover:bg-gray-800 dark:focus:bg-gray-800",
               aria_label: "choose a runtime to run the notebook in" do %>
-          <.remix_icon icon="loader-3-line" class="text-xl text-gray-400" />
+          <.remix_icon icon="loader-3-line" class="text-xl text-gray-400 dark:text-gray-200" />
         <% end %>
       </span>
     <% end %>
@@ -164,7 +172,7 @@ defmodule LivebookWeb.SessionLive.IndicatorsComponent do
     ~H"""
     <span class="tooltip left" data-tooltip="Go to evaluating cell">
       <button
-        class="border-blue-400 icon-button icon-outlined-button hover:bg-blue-50 focus:bg-blue-50"
+        class="border-blue-400 icon-button icon-outlined-button hover:bg-blue-50 focus:bg-blue-50 dark:hover-bg-blue-900 dark:focus:bg-blue-900"
         aria-label="go to evaluating cell"
         data-el-focus-cell-button
         data-target={@cell_id}
@@ -179,7 +187,7 @@ defmodule LivebookWeb.SessionLive.IndicatorsComponent do
     ~H"""
     <span class="tooltip left" data-tooltip="Go to last evaluated cell">
       <button
-        class="border-green-bright-300 icon-button icon-outlined-button hover:bg-green-bright-50 focus:bg-green-bright-50"
+        class="border-green-bright-300 icon-button icon-outlined-button hover:bg-green-bright-50 focus:bg-green-bright-50 dark:hover:bg-green-bright-900 dark:focus:bg-green-bright-900"
         aria-label="go to last evaluated cell"
         data-el-focus-cell-button
         data-target={@cell_id}
@@ -194,7 +202,7 @@ defmodule LivebookWeb.SessionLive.IndicatorsComponent do
     ~H"""
     <span class="tooltip left" data-tooltip="Go to first stale cell">
       <button
-        class="border-yellow-bright-200 icon-button icon-outlined-button hover:bg-yellow-bright-50 focus:bg-yellow-bright-50"
+        class="border-yellow-bright-200 icon-button icon-outlined-button hover:bg-yellow-bright-50 focus:bg-yellow-bright-50 dark:hover:bg-yellow-bright-900 dark:focus:bg-yellow-bright-900"
         aria-label="go to first stale cell"
         data-el-focus-cell-button
         data-target={@cell_id}
@@ -209,10 +217,10 @@ defmodule LivebookWeb.SessionLive.IndicatorsComponent do
     ~H"""
     <span class="tooltip left" data-tooltip="Ready to evaluate">
       <div
-        class="border-gray-200 icon-button icon-outlined-button hover:bg-gray-100 focus:bg-gray-100"
+        class="border-gray-200 icon-button icon-outlined-button hover:bg-gray-100 focus:bg-gray-100 dark:hover:bg-gray-800 dark:focus:bg-gray-800"
         aria-label="ready to evaluate"
       >
-        <.remix_icon icon="loader-3-line" class="text-xl text-gray-400" />
+        <.remix_icon icon="loader-3-line" class="text-xl text-gray-400 dark:text-gray-200" />
       </div>
     </span>
     """
