@@ -95,7 +95,7 @@ defmodule LivebookWeb.SessionLive do
   def render(assigns) do
     ~H"""
     <div
-      class="flex grow h-full"
+      class="flex h-full grow"
       id={"session-#{@session.id}"}
       data-el-session
       phx-hook="Session"
@@ -103,7 +103,7 @@ defmodule LivebookWeb.SessionLive do
       data-autofocus-cell-id={@autofocus_cell_id}
     >
       <nav
-        class="w-16 flex flex-col items-center px-3 py-1 space-y-2 sm:space-y-4 sm:py-5 bg-gray-900"
+        class="flex flex-col items-center w-16 px-3 py-1 bg-gray-900 space-y-2 sm:space-y-4 sm:py-5"
         aria-label="sidebar"
         data-el-sidebar
       >
@@ -153,7 +153,7 @@ defmodule LivebookWeb.SessionLive do
 
         <span class="tooltip right distant" data-tooltip="User profile">
           <button
-            class="text-gray-400 rounded-xl h-8 w-8 flex items-center justify-center mt-2 group"
+            class="flex items-center justify-center w-8 h-8 mt-2 text-gray-400 rounded-xl group"
             aria_label="user profile"
             phx-click={show_current_user_modal()}
           >
@@ -187,7 +187,7 @@ defmodule LivebookWeb.SessionLive do
           <.runtime_info data_view={@data_view} session={@session} socket={@socket} />
         </div>
       </div>
-      <div class="grow overflow-y-auto relative" data-el-notebook>
+      <div class="relative overflow-y-auto grow" data-el-notebook>
         <div data-el-js-view-iframes phx-update="ignore" id="js-view-iframes"></div>
         <LivebookWeb.SessionLive.IndicatorsComponent.render
           socket={@socket}
@@ -199,11 +199,11 @@ defmodule LivebookWeb.SessionLive do
           global_status={@data_view.global_status}
         />
         <div
-          class="w-full max-w-screen-lg px-4 sm:pl-8 sm:pr-16 md:pl-16 pt-4 sm:py-5 mx-auto"
+          class="w-full px-4 pt-4 mx-auto max-w-screen-lg sm:pl-8 sm:pr-16 md:pl-16 sm:py-5"
           data-el-notebook-content
         >
           <div
-            class="flex items-center pb-4 mb-2 space-x-4 border-b border-gray-200"
+            class="flex items-center pb-4 mb-2 border-b border-gray-200 space-x-4"
             data-el-notebook-headline
             data-focusable-id="notebook"
             id="notebook"
@@ -212,7 +212,7 @@ defmodule LivebookWeb.SessionLive do
             data-metadata="notebook"
           >
             <h1
-              class="grow p-1 -ml-1 text-3xl font-semibold text-gray-800 border border-transparent rounded-lg whitespace-pre-wrap"
+              class="p-1 -ml-1 text-3xl font-semibold text-gray-800 whitespace-pre-wrap border border-transparent rounded-lg grow dark:text-gray-100"
               tabindex="0"
               id="notebook-heading"
               data-el-heading
@@ -232,16 +232,16 @@ defmodule LivebookWeb.SessionLive do
                   <.remix_icon icon="download-2-line" />
                   <span class="font-medium">Export</span>
                 <% end %>
-                <button class="menu-item text-gray-500" role="menuitem" phx-click="erase_outputs">
+                <button class="text-gray-500 menu-item" role="menuitem" phx-click="erase_outputs">
                   <.remix_icon icon="eraser-fill" />
                   <span class="font-medium">Erase outputs</span>
                 </button>
-                <button class="menu-item text-gray-500" role="menuitem" phx-click="fork_session">
+                <button class="text-gray-500 menu-item" role="menuitem" phx-click="fork_session">
                   <.remix_icon icon="git-branch-line" />
                   <span class="font-medium">Fork</span>
                 </button>
                 <a
-                  class="menu-item text-gray-500"
+                  class="text-gray-500 menu-item"
                   role="menuitem"
                   href={live_dashboard_process_path(@socket, @session.pid)}
                   target="_blank"
@@ -269,7 +269,7 @@ defmodule LivebookWeb.SessionLive do
               cell_view={@data_view.setup_cell_view}
             />
           </div>
-          <div class="mt-8 flex flex-col w-full space-y-16" data-el-sections-container>
+          <div class="flex flex-col w-full mt-8 space-y-16" data-el-sections-container>
             <%= if @data_view.section_views == [] do %>
               <div class="flex justify-center">
                 <button class="button-base button-small" phx-click="append_section">
@@ -429,7 +429,7 @@ defmodule LivebookWeb.SessionLive do
     ~H"""
     <span class="tooltip right distant" data-tooltip={@label}>
       <button
-        class="text-2xl text-gray-400 hover:text-gray-50 focus:text-gray-50 rounded-xl h-10 w-10 flex items-center justify-center"
+        class="flex items-center justify-center w-10 h-10 text-2xl text-gray-400 hover:text-gray-50 focus:text-gray-50 rounded-xl"
         aria-label={@label}
         {@button_attrs}
       >
@@ -456,14 +456,14 @@ defmodule LivebookWeb.SessionLive do
   defp sections_list(assigns) do
     ~H"""
     <div class="flex flex-col grow">
-      <h3 class="uppercase text-sm font-semibold text-gray-500">
+      <h3 class="text-sm font-semibold text-gray-500 uppercase">
         Sections
       </h3>
       <div class="flex flex-col mt-4 space-y-4">
         <%= for section_item <- @data_view.sections_items do %>
           <div class="flex items-center">
             <button
-              class="grow flex items-center text-gray-500 hover:text-gray-900 text-left"
+              class="flex items-center text-left text-gray-500 grow hover:text-gray-900"
               data-el-sections-list-item
               data-section-id={section_item.id}
             >
@@ -489,7 +489,7 @@ defmodule LivebookWeb.SessionLive do
         <% end %>
       </div>
       <button
-        class="inline-flex items-center justify-center p-8 py-1 mt-8 space-x-2 text-sm font-medium text-gray-500 border border-gray-400 border-dashed rounded-xl hover:bg-gray-100"
+        class="inline-flex items-center justify-center p-8 py-1 mt-8 text-sm font-medium text-gray-500 border border-gray-400 border-dashed space-x-2 rounded-xl hover:bg-gray-100"
         phx-click="append_section"
       >
         <.remix_icon icon="add-line" class="text-lg align-center" />
@@ -502,11 +502,11 @@ defmodule LivebookWeb.SessionLive do
   defp clients_list(assigns) do
     ~H"""
     <div class="flex flex-col grow">
-      <div class="flex items-center justify-between space-x-4 -mt-1">
-        <h3 class="uppercase text-sm font-semibold text-gray-500">
+      <div class="flex items-center justify-between -mt-1 space-x-4">
+        <h3 class="text-sm font-semibold text-gray-500 uppercase">
           Users
         </h3>
-        <span class="flex items-center px-2 py-1 space-x-2 text-sm bg-gray-200 rounded-lg">
+        <span class="flex items-center px-2 py-1 text-sm bg-gray-200 rounded-lg space-x-2">
           <span class="inline-flex w-3 h-3 bg-green-600 rounded-full"></span>
           <span><%= length(@data_view.clients) %> connected</span>
         </span>
@@ -520,7 +520,7 @@ defmodule LivebookWeb.SessionLive do
             data-client-id={client_id}
           >
             <button
-              class="flex items-center space-x-2 text-gray-500 hover:text-gray-900 disabled:pointer-events-none"
+              class="flex items-center text-gray-500 space-x-2 hover:text-gray-900 disabled:pointer-events-none"
               disabled={client_id == @client_id}
               data-el-client-link
             >
@@ -559,22 +559,22 @@ defmodule LivebookWeb.SessionLive do
   defp secrets_list(assigns) do
     ~H"""
     <div class="flex flex-col grow">
-      <div class="flex justify-between items-center">
-        <h3 class="uppercase text-sm font-semibold text-gray-500">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-semibold text-gray-500 uppercase">
           Secrets
         </h3>
         <.secrets_info_icon />
       </div>
       <span class="text-sm text-gray-500">Available only to this session</span>
       <div class="flex flex-col">
-        <div class="flex flex-col space-y-4 mt-6">
+        <div class="flex flex-col mt-6 space-y-4">
           <%= for {secret_name, secret_value} <- session_only_secrets(@data_view.secrets, @livebook_secrets) do %>
             <div
-              class="flex flex-col text-gray-500 rounded-lg px-2 pt-1"
+              class="flex flex-col px-2 pt-1 text-gray-500 rounded-lg"
               id={"session-secret-#{secret_name}-wrapper"}
             >
               <span
-                class="text-sm font-mono break-all w-full cursor-pointer hover:text-gray-800"
+                class="w-full font-mono text-sm break-all cursor-pointer hover:text-gray-800"
                 id={"session-secret-#{secret_name}-title"}
                 phx-click={
                   JS.toggle(to: "#session-secret-#{secret_name}-title")
@@ -587,7 +587,7 @@ defmodule LivebookWeb.SessionLive do
                 <%= secret_name %>
               </span>
               <div
-                class="flex flex-col text-gray-800 hidden"
+                class="flex flex-col hidden text-gray-800"
                 id={"session-secret-#{secret_name}-detail"}
                 phx-click={
                   JS.toggle(to: "#session-secret-#{secret_name}-title")
@@ -598,11 +598,11 @@ defmodule LivebookWeb.SessionLive do
                 }
               >
                 <div class="flex flex-col">
-                  <span class="text-sm font-mono break-all flex-row cursor-pointer">
+                  <span class="flex-row font-mono text-sm break-all cursor-pointer">
                     <%= secret_name %>
                   </span>
-                  <div class="flex flex-row justify-between items-center my-1">
-                    <span class="text-sm font-mono break-all flex-row">
+                  <div class="flex flex-row items-center justify-between my-1">
+                    <span class="flex-row font-mono text-sm break-all">
                       <%= secret_value %>
                     </span>
                     <button
@@ -637,7 +637,7 @@ defmodule LivebookWeb.SessionLive do
         <% end %>
 
         <div class="mt-16">
-          <h3 class="uppercase text-sm font-semibold text-gray-500">
+          <h3 class="text-sm font-semibold text-gray-500 uppercase">
             App secrets
           </h3>
           <span class="text-sm text-gray-500">
@@ -649,15 +649,15 @@ defmodule LivebookWeb.SessionLive do
           </span>
         </div>
 
-        <div class="flex flex-col space-y-4 mt-6">
+        <div class="flex flex-col mt-6 space-y-4">
           <%= for {secret_name, secret_value} = secret <- Enum.sort(@livebook_secrets) do %>
             <div
-              class="flex flex-col text-gray-500 rounded-lg px-2 pt-1"
+              class="flex flex-col px-2 pt-1 text-gray-500 rounded-lg"
               id={"app-secret-#{secret_name}-wrapper"}
             >
               <div class="flex" id={"app-secret-#{secret_name}-title"}>
                 <span
-                  class="text-sm font-mono break-all w-full cursor-pointer flex flex-row justify-between items-center hover:text-gray-800"
+                  class="flex flex-row items-center justify-between w-full font-mono text-sm break-all cursor-pointer hover:text-gray-800"
                   phx-click={
                     JS.toggle(to: "#app-secret-#{secret_name}-title", display: "flex")
                     |> JS.toggle(to: "#app-secret-#{secret_name}-detail", display: "flex")
@@ -676,11 +676,11 @@ defmodule LivebookWeb.SessionLive do
                   phx-value-secret_value={secret_value}
                 />
               </div>
-              <div class="flex flex-col text-gray-800 hidden" id={"app-secret-#{secret_name}-detail"}>
+              <div class="flex flex-col hidden text-gray-800" id={"app-secret-#{secret_name}-detail"}>
                 <div class="flex flex-col">
-                  <div class="flex justify-between items-center">
+                  <div class="flex items-center justify-between">
                     <span
-                      class="text-sm font-mono w-full break-all flex-row cursor-pointer"
+                      class="flex-row w-full font-mono text-sm break-all cursor-pointer"
                       phx-click={
                         JS.toggle(to: "#app-secret-#{secret_name}-title", display: "flex")
                         |> JS.toggle(to: "#app-secret-#{secret_name}-detail", display: "flex")
@@ -699,8 +699,8 @@ defmodule LivebookWeb.SessionLive do
                       phx-value-secret_value={secret_value}
                     />
                   </div>
-                  <div class="flex flex-row justify-between items-center my-1">
-                    <span class="text-sm font-mono break-all flex-row">
+                  <div class="flex flex-row items-center justify-between my-1">
+                    <span class="flex-row font-mono text-sm break-all">
                       <%= secret_value %>
                     </span>
                     <button
@@ -733,7 +733,7 @@ defmodule LivebookWeb.SessionLive do
   defp secrets_info_icon(assigns) do
     ~H"""
     <span
-      class="icon-button cursor-pointer tooltip bottom-left"
+      class="cursor-pointer icon-button tooltip bottom-left"
       data-tooltip={
         ~S'''
         Secrets are a safe way to share credentials
@@ -752,7 +752,7 @@ defmodule LivebookWeb.SessionLive do
     ~H"""
     <div class="flex flex-col grow">
       <div class="flex items-center justify-between">
-        <h3 class="uppercase text-sm font-semibold text-gray-500">
+        <h3 class="text-sm font-semibold text-gray-500 uppercase">
           Runtime
         </h3>
         <%= live_patch to: Routes.session_path(@socket, :runtime_settings, @session.id),
@@ -769,7 +769,7 @@ defmodule LivebookWeb.SessionLive do
         <div class="flex space-x-2">
           <%= if Runtime.connected?(@data_view.runtime) do %>
             <button class="button-base button-blue" phx-click="reconnect_runtime">
-              <.remix_icon icon="wireless-charging-line" class="align-middle mr-1" />
+              <.remix_icon icon="wireless-charging-line" class="mr-1 align-middle" />
               <span>Reconnect</span>
             </button>
             <button
@@ -781,7 +781,7 @@ defmodule LivebookWeb.SessionLive do
             </button>
           <% else %>
             <button class="button-base button-blue" phx-click="connect_runtime">
-              <.remix_icon icon="wireless-charging-line" class="align-middle mr-1" />
+              <.remix_icon icon="wireless-charging-line" class="mr-1 align-middle" />
               <span>Connect</span>
             </button>
             <%= live_patch to: Routes.session_path(@socket, :runtime_settings, @session.id),
@@ -793,8 +793,8 @@ defmodule LivebookWeb.SessionLive do
         <%= if uses_memory?(@session.memory_usage) do %>
           <.memory_info memory_usage={@session.memory_usage} />
         <% else %>
-          <div class="mb-1 text-sm text-gray-800 py-6 flex flex-col">
-            <span class="w-full uppercase font-semibold text-gray-500">Memory</span>
+          <div class="flex flex-col py-6 mb-1 text-sm text-gray-800">
+            <span class="w-full font-semibold text-gray-500 uppercase">Memory</span>
             <p class="py-1">
               <%= format_bytes(@session.memory_usage.system.free) %> available out of <%= format_bytes(
                 @session.memory_usage.system.total
@@ -811,8 +811,8 @@ defmodule LivebookWeb.SessionLive do
     assigns = assign(assigns, :runtime_memory, runtime_memory(assigns.memory_usage))
 
     ~H"""
-    <div class="py-6 flex flex-col justify-center">
-      <div class="mb-1 text-sm font-semibold text-gray-800 flex flex-row justify-between">
+    <div class="flex flex-col justify-center py-6">
+      <div class="flex flex-row justify-between mb-1 text-sm font-semibold text-gray-800">
         <span class="text-gray-500 uppercase">Memory</span>
         <span class="text-right">
           <%= format_bytes(@memory_usage.system.free) %> available
@@ -827,8 +827,8 @@ defmodule LivebookWeb.SessionLive do
         <%= for {type, memory} <- @runtime_memory do %>
           <div class="flex flex-row items-center">
             <span class={"w-4 h-4 mr-2 rounded #{memory_color(type)}"}></span>
-            <span class="capitalize text-gray-700"><%= type %></span>
-            <span class="text-gray-500 ml-auto"><%= memory.unit %></span>
+            <span class="text-gray-700 capitalize"><%= type %></span>
+            <span class="ml-auto text-gray-500"><%= memory.unit %></span>
           </div>
         <% end %>
         <div class="flex rounded justify-center my-2 py-0.5 text-sm text-gray-800 bg-gray-200">
@@ -863,7 +863,7 @@ defmodule LivebookWeb.SessionLive do
 
     ~H"""
     <div class="flex items-center space-x-1">
-      <span class="flex relative h-3 w-3">
+      <span class="relative flex w-3 h-3">
         <%= if @animated_circle_class do %>
           <span class={
             "#{@animated_circle_class} animate-ping absolute inline-flex h-3 w-3 rounded-full opacity-75"
