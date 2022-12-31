@@ -10,7 +10,7 @@ defmodule LivebookWeb.PageHelpers do
   """
   def title(assigns) do
     ~H"""
-    <h1 class="text-2xl text-gray-800 font-medium">
+    <h1 class="text-2xl font-medium text-gray-800 dark:text-gray-100">
       <%= @text %>
     </h1>
     """
