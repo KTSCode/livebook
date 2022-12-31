@@ -92,7 +92,7 @@
 }
 
 .markdown table tbody tr {
-  @apply border-b border-gray-200 last:border-b-0 hover:bg-gray-50;
+  @apply border-b border-gray-200 last:border-b-0 hover:bg-gray-50 dark:hover:bg-gray-900;
 }
 
 .markdown table th {
