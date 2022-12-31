@@ -5,7 +5,7 @@ defmodule LivebookWeb.SessionLive.SectionComponent do
     ~H"""
     <section data-el-section data-section-id={@section_view.id}>
       <div
-        class="flex space-x-4 items-center"
+        class="flex items-center space-x-4"
         data-el-section-headline
         id={@section_view.id}
         data-focusable-id={@section_view.id}
@@ -14,7 +14,7 @@ defmodule LivebookWeb.SessionLive.SectionComponent do
         data-metadata={@section_view.id}
       >
         <h2
-          class="grow text-gray-800 font-semibold text-2xl px-1 -ml-1 rounded-lg border border-transparent whitespace-pre-wrap cursor-text"
+          class="px-1 -ml-1 text-2xl font-semibold text-gray-800 whitespace-pre-wrap border border-transparent rounded-lg grow cursor-text dark:text-gray-100"
           tabindex="0"
           id={@section_view.html_id}
           data-el-heading
@@ -22,7 +22,7 @@ defmodule LivebookWeb.SessionLive.SectionComponent do
           phx-no-format
         ><%= @section_view.name %></h2>
         <div
-          class="flex space-x-2 items-center"
+          class="flex items-center space-x-2"
           data-el-section-actions
           role="toolbar"
           aria-label="section actions"
@@ -45,7 +45,7 @@ defmodule LivebookWeb.SessionLive.SectionComponent do
                 <%= for parent <- @section_view.valid_parents do %>
                   <%= if @section_view.parent && @section_view.parent.id == parent.id do %>
                     <button
-                      class="menu-item text-gray-900"
+                      class="text-gray-900 menu-item"
                       phx-click="unset_section_parent"
                       phx-value-section_id={@section_view.id}
                     >
@@ -54,7 +54,7 @@ defmodule LivebookWeb.SessionLive.SectionComponent do
                     </button>
                   <% else %>
                     <button
-                      class="menu-item text-gray-500 bg-gray-50"
+                      class="text-gray-500 menu-item bg-gray-50"
                       phx-click="set_section_parent"
                       phx-value-section_id={@section_view.id}
                       phx-value-parent_id={parent.id}
@@ -107,7 +107,7 @@ defmodule LivebookWeb.SessionLive.SectionComponent do
       </div>
       <%= if @section_view.parent do %>
         <h3
-          class="mt-1 flex items-end space-x-1 text-sm font-semibold text-gray-800"
+          class="flex items-end mt-1 text-sm font-semibold text-gray-800 space-x-1"
           data-el-section-subheadline
         >
           <span
@@ -117,7 +117,7 @@ defmodule LivebookWeb.SessionLive.SectionComponent do
           >
             <.remix_icon
               icon="git-branch-line"
-              class="text-lg font-normal flip-horizontally leading-none"
+              class="text-lg font-normal leading-none flip-horizontally"
             />
           </span>
           <span class="leading-none">from ”<%= @section_view.parent.name %>”</span>
