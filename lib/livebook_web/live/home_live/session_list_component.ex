@@ -35,9 +35,9 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
   def render(assigns) do
     ~H"""
     <form id="bulk-action-form" phx-submit="bulk_action">
-      <div class="mb-4 flex items-center md:items-end justify-between">
+      <div class="flex items-center justify-between mb-4 md:items-end">
         <div class="flex flex-row">
-          <h2 class="uppercase font-semibold text-gray-500 text-sm md:text-base">
+          <h2 class="text-sm font-semibold text-gray-500 uppercase md:text-base dark:text-gray-400">
             Running sessions (<%= length(@sessions) %>)
           </h2>
         </div>
@@ -49,12 +49,12 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
           <.menu id="sessions-order-menu">
             <:toggle>
               <button
-                class="w-28 button-base button-outlined-gray px-4 py-1 flex justify-between items-center"
+                class="flex items-center justify-between px-4 py-1 w-28 button-base button-outlined-gray"
                 type="button"
                 aria-label={"order by - currently ordered by #{order_by_label(@order_by)}"}
               >
                 <span><%= order_by_label(@order_by) %></span>
-                <.remix_icon icon="arrow-down-s-line" class="text-lg leading-none align-middle ml-1" />
+                <.remix_icon icon="arrow-down-s-line" class="ml-1 text-lg leading-none align-middle" />
               </button>
             </:toggle>
             <:content>
@@ -90,11 +90,11 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
 
   defp session_list(%{sessions: []} = assigns) do
     ~H"""
-    <div class="mt-4 p-5 flex space-x-4 items-center border border-gray-200 rounded-lg">
+    <div class="flex items-center p-5 mt-4 border border-gray-200 rounded-lg space-x-4">
       <div>
-        <.remix_icon icon="windy-line" class="text-gray-400 text-xl" />
+        <.remix_icon icon="windy-line" class="text-xl text-gray-400" />
       </div>
-      <div class="grow flex items-center justify-between">
+      <div class="flex items-center justify-between grow">
         <div class="text-gray-600">
           You do not have any running sessions.
           <%= if @show_autosave_note? do %>
@@ -118,32 +118,33 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
     ~H"""
     <div class="flex flex-col" role="group" aria-label="running sessions list">
       <%= for session <- @sessions do %>
-        <div class="py-4 flex items-center border-b border-gray-300" data-test-session-id={session.id}>
+        <div class="flex items-center py-4 border-b border-gray-300" data-test-session-id={session.id}>
           <div id={"#{session.id}-checkbox"} phx-update="ignore">
             <input
               type="checkbox"
               name="session_ids[]"
               value={session.id}
               aria-label={session.notebook_name}
-              class="checkbox-base hidden mr-3"
+              class="hidden mr-3 checkbox-base"
               data-el-bulk-edit-member
               phx-click={JS.dispatch("lb:session_list:on_selection_change")}
             />
           </div>
-          <div class="grow flex flex-col items-start">
+          <div class="flex flex-col items-start grow">
             <%= live_redirect(session.notebook_name,
               to: Routes.session_path(@socket, :page, session.id),
-              class: "font-semibold text-gray-800 hover:text-gray-900"
+              class:
+                "font-semibold text-gray-800 hover:text-gray-900 dark:text-gray-100 dark:hover-text-gray-900"
             ) %>
-            <div class="text-gray-600 text-sm">
+            <div class="text-sm text-gray-600 dark:text-gray-300">
               <%= if session.file, do: session.file.path, else: "No file" %>
             </div>
-            <div class="mt-2 text-gray-600 text-sm flex flex-row items-center">
+            <div class="flex flex-row items-center mt-2 text-sm text-gray-600 dark:text-gray-300">
               <%= if uses_memory?(session.memory_usage) do %>
-                <div class="h-3 w-3 mr-1 rounded-full bg-green-500"></div>
+                <div class="w-3 h-3 mr-1 bg-green-500 rounded-full"></div>
                 <span class="pr-4"><%= format_bytes(session.memory_usage.runtime.total) %></span>
               <% else %>
-                <div class="h-3 w-3 mr-1 rounded-full bg-gray-300"></div>
+                <div class="w-3 h-3 mr-1 bg-gray-300 rounded-full dark:bg-gray-600"></div>
                 <span class="pr-4">0 MB</span>
               <% end %>
               Created <%= format_creation_date(session.created_at) %>
@@ -157,7 +158,7 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
             </:toggle>
             <:content>
               <a
-                class="menu-item text-gray-500"
+                class="text-gray-500 menu-item dark:text-gray-400"
                 role="menuitem"
                 href={
                   Routes.session_path(@socket, :download_source, session.id, "livemd",
@@ -170,7 +171,7 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
                 <span class="font-medium">Download source</span>
               </a>
               <button
-                class="menu-item text-gray-500"
+                class="text-gray-500 menu-item dark:text-gray-400"
                 type="button"
                 role="menuitem"
                 phx-click="fork_session"
@@ -181,7 +182,7 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
                 <span class="font-medium">Fork</span>
               </button>
               <a
-                class="menu-item text-gray-500"
+                class="text-gray-500 menu-item dark:text-gray-400"
                 role="menuitem"
                 href={live_dashboard_process_path(@socket, session.pid)}
                 target="_blank"
@@ -190,7 +191,7 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
                 <span class="font-medium">See on Dashboard</span>
               </a>
               <button
-                class="menu-item text-gray-500"
+                class="text-gray-500 menu-item dark:text-gray-400"
                 type="button"
                 disabled={!session.memory_usage.runtime}
                 role="menuitem"
@@ -244,7 +245,7 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
           />
         </svg>
         <div class="hidden sm:flex md:hidden lg:flex">
-          <span class="px-2 py-1 text-sm text-gray-500 font-medium">
+          <span class="px-2 py-1 text-sm font-medium text-gray-500">
             <%= format_bytes(@used) %> / <%= format_bytes(@total) %>
             <span class="sr-only"><%= @percentage %> percent used</span>
           </span>
@@ -257,7 +258,7 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
   defp edit_sessions(assigns) do
     ~H"""
     <div
-      class="mx-4 mr-2 text-gray-600 flex flex-row gap-1"
+      class="flex flex-row mx-4 mr-2 text-gray-600 gap-1"
       role="group"
       aria-label="bulk actions for sessions"
     >
@@ -265,34 +266,34 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
         <:toggle>
           <button
             id="toggle-edit"
-            class="w-28 button-base button-outlined-gray px-4 pl-2 py-1"
+            class="px-4 py-1 pl-2 w-28 button-base button-outlined-gray"
             phx-click={toggle_edit(:on)}
             type="button"
             aria-label="toggle edit"
           >
-            <.remix_icon icon="list-check-2" class="text-lg leading-none align-middle ml-1" />
+            <.remix_icon icon="list-check-2" class="ml-1 text-lg leading-none align-middle" />
             <span>Edit</span>
           </button>
           <button
-            class="hidden w-28 button-base button-outlined-gray px-4 py-1 flex justify-between items-center"
+            class="flex items-center justify-between hidden px-4 py-1 w-28 button-base button-outlined-gray"
             data-el-bulk-edit-member
             type="button"
           >
             <span>Actions</span>
-            <.remix_icon icon="arrow-down-s-line" class="text-lg leading-none align-middle ml-1" />
+            <.remix_icon icon="arrow-down-s-line" class="ml-1 text-lg leading-none align-middle" />
           </button>
         </:toggle>
         <:content>
-          <button class="menu-item text-gray-600" phx-click={toggle_edit(:off)} type="button">
+          <button class="text-gray-600 menu-item" phx-click={toggle_edit(:off)} type="button">
             <.remix_icon icon="close-line" />
             <span class="font-medium">Cancel</span>
           </button>
-          <button class="menu-item text-gray-600" phx-click={select_all()} type="button">
+          <button class="text-gray-600 menu-item" phx-click={select_all()} type="button">
             <.remix_icon icon="checkbox-multiple-line" />
             <span class="font-medium">Select all</span>
           </button>
           <button
-            class="menu-item text-gray-600"
+            class="text-gray-600 menu-item"
             name="disconnect"
             type="button"
             data-keep-attribute="disabled"
@@ -302,7 +303,7 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
             <span class="font-medium">Disconnect runtime</span>
           </button>
           <button
-            class="menu-item text-red-600"
+            class="text-red-600 menu-item"
             name="close_all"
             type="button"
             data-keep-attribute="disabled"
