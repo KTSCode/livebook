@@ -5,7 +5,7 @@ defmodule LivebookWeb.SessionLive.CellComponent do
   def render(assigns) do
     ~H"""
     <div
-      class="flex flex-col relative"
+      class="relative flex flex-col"
       data-el-cell
       id={"cell-#{@cell_view.id}"}
       phx-hook="Cell"
@@ -122,7 +122,7 @@ defmodule LivebookWeb.SessionLive.CellComponent do
     </.cell_actions>
     <.cell_body>
       <div data-el-info-box>
-        <div class="p-3 flex items-center justify-between border border-gray-200 text-sm text-gray-400 font-medium rounded-lg">
+        <div class="flex items-center justify-between p-3 text-sm font-medium text-gray-400 border border-gray-200 rounded-lg">
           <span>Notebook dependencies and setup</span>
           <.cell_status id={"#{@cell_view.id}-1"} cell_view={@cell_view} />
         </div>
@@ -210,7 +210,7 @@ defmodule LivebookWeb.SessionLive.CellComponent do
               <% end %>
             </div>
           <% :down -> %>
-            <div class="info-box flex justify-between items-center">
+            <div class="flex items-center justify-between info-box">
               <span>
                 The Smart cell crashed unexpectedly, this is most likely a bug.
               </span>
@@ -265,7 +265,7 @@ defmodule LivebookWeb.SessionLive.CellComponent do
       |> assign_new(:secondary, fn -> [] end)
 
     ~H"""
-    <div class="mb-1 flex items-center justify-between">
+    <div class="flex items-center justify-between mb-1">
       <div class="relative z-20 flex items-center justify-end space-x-2" data-el-actions data-primary>
         <%= render_slot(@primary) %>
       </div>
@@ -285,8 +285,8 @@ defmodule LivebookWeb.SessionLive.CellComponent do
     ~H"""
     <!-- By setting tabindex we can programmatically focus this element,
          also we actually want to make this element tab-focusable -->
-    <div class="flex relative" data-el-cell-body tabindex="0">
-      <div class="w-1 h-full rounded-lg absolute top-0 -left-3" data-el-cell-focus-indicator></div>
+    <div class="relative flex" data-el-cell-body tabindex="0">
+      <div class="absolute top-0 w-1 h-full rounded-lg -left-3" data-el-cell-focus-indicator></div>
       <div class="w-full">
         <%= render_slot(@inner_block) %>
       </div>
@@ -298,7 +298,7 @@ defmodule LivebookWeb.SessionLive.CellComponent do
        when assigns.validity in [:evaluated, :stale] do
     ~H"""
     <%= live_patch to: Routes.session_path(@socket, :cell_settings, @session_id, @cell_id),
-          class: "text-gray-600 hover:text-gray-800 focus:text-gray-800 flex space-x-1 items-center" do %>
+          class: "text-gray-600 hover:text-gray-800 focus:text-gray-800 flex space-x-1 items-center dark:text-gray-300 dark:hover:text-gray-100 dark:focus:text-gray-100" do %>
       <.remix_icon icon="check-line" class="text-xl" />
       <span class="text-sm font-medium">
         Reevaluates automatically
@@ -310,7 +310,7 @@ defmodule LivebookWeb.SessionLive.CellComponent do
   defp cell_evaluation_button(%{status: :ready} = assigns) do
     ~H"""
     <button
-      class="text-gray-600 hover:text-gray-800 focus:text-gray-800 flex space-x-1 items-center"
+      class="flex items-center text-gray-600 hover:text-gray-800 focus:text-gray-800 space-x-1 dark:text-gray-300 dark:hover:text-gray-100 dark:focus:text-gray-100"
       data-el-queue-cell-evaluation-button
       data-cell-id={@cell_id}
     >
@@ -325,7 +325,7 @@ defmodule LivebookWeb.SessionLive.CellComponent do
   defp cell_evaluation_button(assigns) do
     ~H"""
     <button
-      class="text-gray-600 hover:text-gray-800 focus:text-gray-800 flex space-x-1 items-center"
+      class="flex items-center text-gray-600 hover:text-gray-800 focus:text-gray-800 space-x-1 dark:text-gray-300 dark:hover:text-gray-100 dark:focus:text-gray-100"
       phx-click="cancel_cell_evaluation"
       phx-value-cell_id={@cell_id}
     >
@@ -340,7 +340,7 @@ defmodule LivebookWeb.SessionLive.CellComponent do
   defp setup_cell_evaluation_button(%{status: :ready} = assigns) do
     ~H"""
     <button
-      class="text-gray-600 hover:text-gray-800 focus:text-gray-800 flex space-x-1 items-center"
+      class="flex items-center text-gray-600 hover:text-gray-800 focus:text-gray-800 space-x-1 dark:text-gray-300 dark:hover:text-gray-100 dark:focus:text-gray-100"
       data-el-queue-cell-evaluation-button
       data-cell-id={@cell_id}
     >
@@ -358,7 +358,7 @@ defmodule LivebookWeb.SessionLive.CellComponent do
   defp setup_cell_evaluation_button(assigns) do
     ~H"""
     <button
-      class="text-gray-600 hover:text-gray-800 focus:text-gray-800 flex space-x-1 items-center"
+      class="flex items-center text-gray-600 hover:text-gray-800 focus:text-gray-800 space-x-1 dark:text-gray-300 dark:hover:text-gray-100 dark:focus:text-gray-100"
       phx-click="cancel_cell_evaluation"
       phx-value-cell_id={@cell_id}
     >
@@ -643,7 +643,7 @@ defmodule LivebookWeb.SessionLive.CellComponent do
             <span data-el-change-indicator>*</span>
           <% end %>
         </div>
-        <span class="flex relative h-3 w-3">
+        <span class="relative flex w-3 h-3">
           <%= if @animated_circle_class do %>
             <span class={
               "#{@animated_circle_class} animate-ping absolute inline-flex h-3 w-3 rounded-full opacity-75"
