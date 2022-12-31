@@ -213,7 +213,7 @@
   }
 
   .menu__content {
-    @apply absolute z-[100] rounded-lg bg-white flex flex-col py-2;
+    @apply absolute z-[100] rounded-lg bg-white flex flex-col py-2 dark:bg-black;
     box-shadow: 0px 15px 99px rgba(13, 24, 41, 0.15);
   }
 
@@ -243,7 +243,7 @@
   }
 
   .menu-item {
-    @apply flex items-center w-full px-5 py-2 space-x-3 hover:bg-gray-100 focus:bg-gray-100 whitespace-nowrap;
+    @apply flex items-center w-full px-5 py-2 space-x-3 hover:bg-gray-100 focus:bg-gray-100 whitespace-nowrap dark:hover:bg-gray-800 dark:focus:bg-gray-800;
   }
 
   .menu-item:disabled {
