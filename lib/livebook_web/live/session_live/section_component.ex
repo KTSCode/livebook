@@ -45,7 +45,7 @@ defmodule LivebookWeb.SessionLive.SectionComponent do
                 <%= for parent <- @section_view.valid_parents do %>
                   <%= if @section_view.parent && @section_view.parent.id == parent.id do %>
                     <button
-                      class="text-gray-900 menu-item"
+                      class="text-gray-900 menu-item dark:text-gray-50"
                       phx-click="unset_section_parent"
                       phx-value-section_id={@section_view.id}
                     >
@@ -54,7 +54,7 @@ defmodule LivebookWeb.SessionLive.SectionComponent do
                     </button>
                   <% else %>
                     <button
-                      class="text-gray-500 menu-item bg-gray-50"
+                      class="text-gray-500 menu-item bg-gray-50 dark:text-gray-400 dark:bg-gray-900"
                       phx-click="set_section_parent"
                       phx-value-section_id={@section_view.id}
                       phx-value-parent_id={parent.id}
