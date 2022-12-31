@@ -14,7 +14,7 @@
   }
 
   .button-gray {
-    @apply text-gray-600 bg-gray-100 border-gray-200 hover:bg-gray-200 focus:bg-gray-200;
+    @apply text-gray-600 bg-gray-100 border-gray-200 hover:bg-gray-200 focus:bg-gray-200 dark:text-gray-300 dark:bg-gray-900 dark:hover:bg-gray-700 dark:focus:bg-gray-700;
   }
 
   .button-outlined-blue {
@@ -26,7 +26,7 @@
   }
 
   .button-outlined-gray {
-    @apply text-gray-600 bg-white border-gray-300 hover:bg-gray-100 focus:bg-gray-100 dark:bg-black dark:text-gray-300;
+    @apply text-gray-600 bg-white border-gray-300 hover:bg-gray-100 focus:bg-gray-100 dark:bg-black dark:text-gray-300 dark:hover:bg-gray-800 dark:focus:bg-gray-800;
   }
 
   .button-base:disabled {
@@ -34,7 +34,7 @@
   }
 
   .button-small {
-    @apply px-2 py-1 text-gray-600 border-gray-200 bg-gray-50 hover:bg-gray-100 focus:bg-gray-100 dark:text-gray-300 dark:bg-gray-800 hover:dark:bg-black focus:dark:bg-black;
+    @apply px-2 py-1 text-gray-600 border-gray-200 bg-gray-50 hover:bg-gray-100 focus:bg-gray-100 dark:text-gray-300 dark:bg-black hover:dark:bg-gray-700 focus:dark:bg-gray-700;
   }
 
   .button-square-icon {
