@@ -26,11 +26,11 @@
   }
 
   .button-outlined-gray {
-    @apply text-gray-600 bg-white border-gray-300 hover:bg-gray-100 focus:bg-gray-100;
+    @apply text-gray-600 bg-white border-gray-300 hover:bg-gray-100 focus:bg-gray-100 dark:bg-black dark:text-gray-300;
   }
 
   .button-base:disabled {
-    @apply text-gray-400 bg-gray-100 border-transparent cursor-default pointer-events-none;
+    @apply text-gray-400 bg-gray-100 border-transparent cursor-default pointer-events-none dark:text-gray-500 dark:bg-gray-800;
   }
 
   .button-small {
