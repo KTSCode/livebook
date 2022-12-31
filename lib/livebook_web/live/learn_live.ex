@@ -29,17 +29,17 @@ defmodule LivebookWeb.LearnLive do
       current_user={@current_user}
       saved_hubs={@saved_hubs}
     >
-      <div class="p-4 md:px-12 md:py-7 max-w-screen-lg mx-auto space-y-4">
+      <div class="p-4 mx-auto md:px-12 md:py-7 max-w-screen-lg space-y-4">
         <div>
           <PageHelpers.title text="Learn" />
-          <p class="mt-4 mb-8 text-gray-700">
+          <p class="mt-4 mb-8 text-gray-700 dark:text-gray-200">
             Check out a number of examples showcasing various parts of the Elixir ecosystem.<br />
             Click on any notebook you like and start playing around with it!
           </p>
         </div>
         <div
           id="welcome-to-livebook"
-          class="p-8 bg-gray-900 rounded-2xl flex flex-col sm:flex-row space-y-8 sm:space-y-0 space-x-0 sm:space-x-8 items-center"
+          class="flex flex-col items-center p-8 bg-gray-900 rounded-2xl sm:flex-row space-y-8 sm:space-y-0 space-x-0 sm:space-x-8"
         >
           <img
             src={Routes.static_path(@socket, @lead_notebook_info.details.cover_url)}
@@ -47,7 +47,7 @@ defmodule LivebookWeb.LearnLive do
             alt="livebook"
           />
           <div>
-            <h3 class="text-xl text-gray-50 font-semibold">
+            <h3 class="text-xl font-semibold text-gray-50">
               <%= @lead_notebook_info.title %>
             </h3>
             <p class="mt-2 text-sm text-gray-300">
@@ -79,16 +79,16 @@ defmodule LivebookWeb.LearnLive do
   defp notebook_group(assigns) do
     ~H"""
     <div>
-      <div class="p-8 mt-16 rounded-2xl border border-gray-300 flex flex-col sm:flex-row space-y-8 sm:space-y-0 space-x-0 sm:space-x-8 items-center">
+      <div class="flex flex-col items-center p-8 mt-16 border border-gray-300 rounded-2xl sm:flex-row space-y-8 sm:space-y-0 space-x-0 sm:space-x-8">
         <img src={Routes.static_path(@socket, @group_info.cover_url)} width="100" />
         <div>
-          <div class="inline-flex px-2 py-0.5 bg-gray-200 rounded-3xl text-gray-700 text-xs font-medium">
+          <div class="inline-flex px-2 py-0.5 bg-gray-200 rounded-3xl text-gray-700 text-xs font-medium dark:bg-gray-700 dark:text-gray-200">
             <%= length(@group_info.notebook_infos) %> notebooks
           </div>
-          <h3 class="mt-1 text-xl text-gray-800 font-semibold">
+          <h3 class="mt-1 text-xl font-semibold text-gray-800 dark:text-gray-100">
             <%= @group_info.title %>
           </h3>
-          <p class="mt-2 text-gray-700">
+          <p class="mt-2 text-gray-700 dark:text-gray-200">
             <%= @group_info.description %>
           </p>
         </div>
@@ -96,16 +96,16 @@ defmodule LivebookWeb.LearnLive do
       <div class="mt-4">
         <ul>
           <%= for {notebook_info, number} <- Enum.with_index(@group_info.notebook_infos, 1) do %>
-            <li class="py-4 flex flex-row items-center space-x-5 border-b border-gray-200 last:border-b-0">
-              <div class="text-lg text-gray-400 font-semibold">
+            <li class="flex flex-row items-center py-4 border-b border-gray-200 space-x-5 last:border-b-0">
+              <div class="text-lg font-semibold text-gray-400 dark:text-gray-500">
                 <%= number |> Integer.to_string() |> String.pad_leading(2, "0") %>
               </div>
-              <div class="grow text-gray-800 font-semibold">
+              <div class="font-semibold text-gray-800 grow dark:text-gray-100">
                 <%= notebook_info.title %>
               </div>
               <%= live_redirect to: Routes.learn_path(@socket, :notebook, notebook_info.slug),
                     class: "button-base button-outlined-gray" do %>
-                <.remix_icon icon="play-circle-line" class="align-middle mr-1" /> Open
+                <.remix_icon icon="play-circle-line" class="mr-1 align-middle" /> Open
               <% end %>
             </li>
           <% end %>
