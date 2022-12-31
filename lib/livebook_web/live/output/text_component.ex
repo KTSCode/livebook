@@ -17,15 +17,15 @@ defmodule LivebookWeb.Output.TextComponent do
     ] %></div><% end %></div>
       <div
         data-content
-        class="overflow-auto whitespace-pre font-editor text-gray-500 tiny-scrollbar"
+        class="overflow-auto text-gray-500 whitespace-pre font-editor tiny-scrollbar dark:text-gray-400"
         id={"virtualized-text-#{@id}-content"}
         phx-update="ignore"
         phx-no-format
       >
       </div>
-      <div class="absolute right-2 top-0 z-10">
+      <div class="absolute top-0 z-10 right-2">
         <button
-          class="icon-button bg-gray-100"
+          class="bg-gray-100 icon-button dark:bg-gray-800"
           data-el-clipcopy
           phx-click={JS.dispatch("lb:clipcopy", to: "#virtualized-text-#{@id}-template")}
         >
