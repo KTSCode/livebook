@@ -92,7 +92,7 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
     ~H"""
     <div class="flex items-center p-5 mt-4 border border-gray-200 rounded-lg space-x-4">
       <div>
-        <.remix_icon icon="windy-line" class="text-xl text-gray-400" />
+        <.remix_icon icon="windy-line" class="text-xl text-gray-400 dark:text-gray-500" />
       </div>
       <div class="flex items-center justify-between grow">
         <div class="text-gray-600 dark:text-gray-300">
@@ -245,7 +245,7 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
           />
         </svg>
         <div class="hidden sm:flex md:hidden lg:flex">
-          <span class="px-2 py-1 text-sm font-medium text-gray-500">
+          <span class="px-2 py-1 text-sm font-medium text-gray-500 dark:text-gray-400">
             <%= format_bytes(@used) %> / <%= format_bytes(@total) %>
             <span class="sr-only"><%= @percentage %> percent used</span>
           </span>
@@ -258,7 +258,7 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
   defp edit_sessions(assigns) do
     ~H"""
     <div
-      class="flex flex-row mx-4 mr-2 text-gray-600 gap-1"
+      class="flex flex-row mx-4 mr-2 text-gray-600 gap-1 dark:text-gray-300"
       role="group"
       aria-label="bulk actions for sessions"
     >
@@ -284,16 +284,24 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
           </button>
         </:toggle>
         <:content>
-          <button class="text-gray-600 menu-item" phx-click={toggle_edit(:off)} type="button">
+          <button
+            class="text-gray-600 menu-item dark:text-gray-300"
+            phx-click={toggle_edit(:off)}
+            type="button"
+          >
             <.remix_icon icon="close-line" />
             <span class="font-medium">Cancel</span>
           </button>
-          <button class="text-gray-600 menu-item" phx-click={select_all()} type="button">
+          <button
+            class="text-gray-600 menu-item dark:text-gray-300"
+            phx-click={select_all()}
+            type="button"
+          >
             <.remix_icon icon="checkbox-multiple-line" />
             <span class="font-medium">Select all</span>
           </button>
           <button
-            class="text-gray-600 menu-item"
+            class="text-gray-600 menu-item dark:text-gray-300"
             name="disconnect"
             type="button"
             data-keep-attribute="disabled"
