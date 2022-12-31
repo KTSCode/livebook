@@ -114,7 +114,7 @@
 }
 
 .markdown code {
-  @apply py-[0.1rem] px-2 rounded-lg text-sm align-middle font-mono bg-gray-200;
+  @apply py-[0.1rem] px-2 rounded-lg text-sm align-middle font-mono bg-gray-200 dark:bg-gray-700;
   font-variant-ligatures: none;
 }
 
