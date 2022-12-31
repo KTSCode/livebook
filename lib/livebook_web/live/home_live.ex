@@ -50,8 +50,8 @@ defmodule LivebookWeb.HomeLive do
       </:topbar_action>
       <.update_notification version={@new_version} instructions_url={@update_instructions_url} />
       <.memory_notification memory={@memory} app_service_url={@app_service_url} />
-      <div class="p-4 md:px-12 md:py-6 max-w-screen-lg mx-auto space-y-4">
-        <div class="flex flex-row space-y-0 items-center pb-4 justify-between">
+      <div class="p-4 mx-auto md:px-12 md:py-6 max-w-screen-lg space-y-4">
+        <div class="flex flex-row items-center justify-between pb-4 space-y-0">
           <PageHelpers.title text="Home" />
           <div class="hidden md:flex space-x-2" role="navigation" aria-label="new notebook">
             <%= live_patch("Import",
@@ -78,7 +78,7 @@ defmodule LivebookWeb.HomeLive do
                 phx-click="fork"
                 disabled={not path_forkable?(@file, @file_info)}
               >
-                <.remix_icon icon="git-branch-line" class="align-middle mr-1" />
+                <.remix_icon icon="git-branch-line" class="mr-1 align-middle" />
                 <span>Fork</span>
               </button>
               <%= if file_running?(@file, @sessions) do %>
@@ -102,14 +102,14 @@ defmodule LivebookWeb.HomeLive do
         </div>
 
         <div class="py-12" data-el-learn-section role="region" aria-label="learn section">
-          <div class="mb-4 flex justify-between items-center">
-            <h2 class="uppercase font-semibold text-gray-500">
+          <div class="flex items-center justify-between mb-4">
+            <h2 class="font-semibold text-gray-500 uppercase dark:text-gray-400">
               Learn
             </h2>
             <%= live_redirect to: Routes.learn_path(@socket, :page),
                     class: "flex items-center text-blue-600" do %>
               <span class="font-semibold">See all</span>
-              <.remix_icon icon="arrow-right-line" class="align-middle ml-1" />
+              <.remix_icon icon="arrow-right-line" class="ml-1 align-middle" />
             <% end %>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -180,7 +180,7 @@ defmodule LivebookWeb.HomeLive do
 
   defp update_notification(assigns) do
     ~H"""
-    <div class="px-2 py-2 bg-blue-200 text-gray-900 text-sm text-center">
+    <div class="px-2 py-2 text-sm text-center text-gray-900 bg-blue-200">
       <span>
         Livebook v<%= @version %> available!
         <%= if @instructions_url do %>
@@ -219,7 +219,7 @@ defmodule LivebookWeb.HomeLive do
   defp memory_notification(assigns) do
     ~H"""
     <%= if @app_service_url && @memory.free < 30_000_000 do %>
-      <div class="px-2 py-2 bg-red-200 text-gray-900 text-sm text-center">
+      <div class="px-2 py-2 text-sm text-center text-gray-900 bg-red-200">
         <.remix_icon icon="alarm-warning-line" class="align-text-bottom mr-0.5" />
         Less than 30 MB of memory left, consider
         <a
