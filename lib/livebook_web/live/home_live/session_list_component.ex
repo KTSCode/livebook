@@ -95,7 +95,7 @@ defmodule LivebookWeb.HomeLive.SessionListComponent do
         <.remix_icon icon="windy-line" class="text-xl text-gray-400" />
       </div>
       <div class="flex items-center justify-between grow">
-        <div class="text-gray-600">
+        <div class="text-gray-600 dark:text-gray-300">
           You do not have any running sessions.
           <%= if @show_autosave_note? do %>
             <br />
