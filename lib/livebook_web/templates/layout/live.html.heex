@@ -1,15 +1,15 @@
-<main role="main" class="grow flex flex-col h-screen">
+<main role="main" class="flex flex-col h-screen grow">
   <div class="fixed right-8 top-5 z-[1000] flex flex-col space-y-3">
     <%= if live_flash(@flash, :info) do %>
       <div
-        class="shadow-custom-1 max-w-2xl flex items-center space-x-3 rounded-lg px-4 py-2 border-l-4 rounded-l-none border-blue-500 bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-500 cursor-pointer"
+        class="flex items-center max-w-2xl px-4 py-2 text-gray-600 bg-white border-l-4 border-blue-500 rounded-lg rounded-l-none cursor-pointer shadow-custom-1 space-x-3 hover:bg-gray-50 hover:text-gray-500 dark:bg-black dark:text-gray-300 dark:hover:bg-gray-900 dark:hover:text-gray-400"
         role="alert"
         phx-click="lv:clear-flash"
         phx-value-key="info"
       >
         <.remix_icon icon="information-line" class="text-2xl text-blue-500" />
         <span
-          class="whitespace-pre-wrap pr-2 max-h-52 overflow-y-auto tiny-scrollbar"
+          class="pr-2 overflow-y-auto whitespace-pre-wrap max-h-52 tiny-scrollbar"
           phx-no-format
         ><%= live_flash(@flash, :info) %></span>
       </div>
@@ -17,14 +17,14 @@
 
     <%= if live_flash(@flash, :success) do %>
       <div
-        class="shadow-custom-1 max-w-2xl flex items-center space-x-3 rounded-lg pl-4 pr-2 py-2 border-l-4 rounded-l-none border-blue-500 bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-500 cursor-pointer"
+        class="flex items-center max-w-2xl py-2 pl-4 pr-2 text-gray-600 bg-white border-l-4 border-blue-500 rounded-lg rounded-l-none cursor-pointer shadow-custom-1 space-x-3 hover:bg-gray-50 hover:text-gray-500 dark:bg-black dark:text-gray-300 dark:hover:bg-gray-900 dark:hover:text-gray-400"
         role="alert"
         phx-click="lv:clear-flash"
         phx-value-key="success"
       >
         <.remix_icon icon="checkbox-circle-fill" class="text-2xl text-blue-500" />
         <span
-          class="whitespace-pre-wrap pr-2 max-h-52 overflow-y-auto tiny-scrollbar"
+          class="pr-2 overflow-y-auto whitespace-pre-wrap max-h-52 tiny-scrollbar"
           phx-no-format
         ><%= live_flash(@flash, :success) %></span>
       </div>
@@ -32,14 +32,14 @@
 
     <%= if live_flash(@flash, :warning) do %>
       <div
-        class="shadow-custom-1 max-w-2xl flex items-center space-x-3 rounded-lg px-4 py-2 border-l-4 rounded-l-none border-yellow-300 bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-500 cursor-pointer"
+        class="flex items-center max-w-2xl px-4 py-2 text-gray-600 bg-white border-l-4 border-yellow-300 rounded-lg rounded-l-none cursor-pointer shadow-custom-1 space-x-3 hover:bg-gray-50 hover:text-gray-500 dark:bg-black dark:text-gray-300 dark:hover:bg-gray-900 dark:hover:text-gray-400"
         role="alert"
         phx-click="lv:clear-flash"
         phx-value-key="warning"
       >
         <.remix_icon icon="alert-line" class="text-2xl text-yellow-400" />
         <span
-          class="whitespace-pre-wrap pr-2 max-h-52 overflow-y-auto tiny-scrollbar"
+          class="pr-2 overflow-y-auto whitespace-pre-wrap max-h-52 tiny-scrollbar"
           phx-no-format
         ><%= live_flash(@flash, :warning) %></span>
       </div>
@@ -47,14 +47,14 @@
 
     <%= if live_flash(@flash, :error) do %>
       <div
-        class="shadow-custom-1 max-w-2xl flex items-center space-x-3 rounded-lg px-4 py-2 border-l-4 rounded-l-none border-red-500 bg-white text-gray-600 hover:bg-gray-50 hover:text-gray-500 cursor-pointer"
+        class="flex items-center max-w-2xl px-4 py-2 text-gray-600 bg-white border-l-4 border-red-500 rounded-lg rounded-l-none cursor-pointer shadow-custom-1 space-x-3 hover:bg-gray-50 hover:text-gray-500 dark:bg-black dark:text-gray-300 dark:hover:bg-gray-900 dark:hover:text-gray-400"
         role="alert"
         phx-click="lv:clear-flash"
         phx-value-key="error"
       >
         <.remix_icon icon="close-circle-line" class="text-2xl text-red-500" />
         <span
-          class="whitespace-pre-wrap pr-2 max-h-52 overflow-y-auto tiny-scrollbar"
+          class="pr-2 overflow-y-auto whitespace-pre-wrap max-h-52 tiny-scrollbar"
           phx-no-format
         ><%= live_flash(@flash, :error) %></span>
       </div>
